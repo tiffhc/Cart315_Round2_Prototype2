@@ -15,11 +15,16 @@ public class PlayerControl : MonoBehaviour
     //public attributes
     public float Speed = 18f;
 
-    public float RotationSpeed = 240.0f;
+    public float RotationSpeed = 100.0f;
 
     public float JumpSpeed = 2.0f;
 
-    public bool isGrounded; 
+    public bool isGrounded;
+
+    
+    public Transform cam_parent; //pivot point 
+    Vector2 input; 
+    public Transform cam; 
     // Start is called before the first frame update
     void Start()
     {
@@ -44,13 +49,49 @@ public class PlayerControl : MonoBehaviour
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
+        //r.AddForce(v * target.transform.forward * Speed);
+        //r.AddForce(h * target.transform.right * Speed);
 
+        //forward vector 
         Vector3 move = new Vector3(h, 0, v) * Speed * Time.deltaTime;
+       
 
         r.MovePosition(transform.position + move);
         _animator.SetBool("run", move.magnitude > 0);
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(move), 0.15f); 
+        //do transform on player - allows smooth rotation
+        //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(move), 0.15f);
+        Vector3 rot = v * cam.transform.forward + h * cam.transform.right;
+
+        move = transform.InverseTransformDirection(move);
+
+        float turnAmount = Mathf.Atan2(move.x, move.z);
+
+        transform.Rotate(0, turnAmount * RotationSpeed * Time.deltaTime, 0); 
+
+        //transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(move), RotationSpeed * Time.deltaTime); 
+
+        //Handle the rotation
+        /*
+        input = new Vector2(h, v);
+
+        input = Vector2.ClampMagnitude(input, 1);
+
+        Vector3 camF = cam.forward; 
+        Vector3 camR = cam.right;
+
+        camF.y = 0;
+        camR.y = 0;
+        camF = camF.normalized;
+        camR = camR.normalized;
+
+        transform.forward = camF;
+        transform.right = camR; 
+        */ 
+
+        //transform.Translate(move * Speed * Time.deltaTime); 
+        //transform.position += (camF * input.y + camR * input.x) * Time.deltaTime; 
+
 
         //for jumping 
         Vector3 jump = new Vector3(0, 0, 0);
