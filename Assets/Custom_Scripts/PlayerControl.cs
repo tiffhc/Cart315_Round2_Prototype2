@@ -17,7 +17,9 @@ public class PlayerControl : MonoBehaviour
 
     public float RotationSpeed = 240.0f;
 
-    public float JumpSpeed = 7.0f; 
+    public float JumpSpeed = 2.0f;
+
+    public bool isGrounded; 
     // Start is called before the first frame update
     void Start()
     {
@@ -26,17 +28,49 @@ public class PlayerControl : MonoBehaviour
         _characterController = GetComponent<CharacterController>(); 
     }
 
+    /*
+    void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag.Equals("ground"))
+        {
+            isGrounded = true;
+        }
+    }
+    */ 
+
     // Update is called once per frame
     void FixedUpdate()
     {
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
+
         Vector3 move = new Vector3(h, 0, v) * Speed * Time.deltaTime;
 
         r.MovePosition(transform.position + move);
         _animator.SetBool("run", move.magnitude > 0);
-     
-     
+
+        //for jumping 
+        Vector3 jump = new Vector3(0, 0, 0);
+
+        if (Input.GetButton("Jump"))
+        {
+            if (isGrounded)
+            {
+                _animator.SetBool("is_in_air", true);
+                r.AddForce(jump * JumpSpeed, ForceMode.Impulse);
+                isGrounded = false;
+                //r.AddForce(Vector3.up * JumpSpeed);
+            }
+        }
+        else
+        {
+            _animator.SetBool("is_in_air", false);
+            isGrounded = true;
+            //set the character running
+            _animator.SetBool("run", move.magnitude > 0);
+
+        }
     }
+
 }
