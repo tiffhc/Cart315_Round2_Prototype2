@@ -6,12 +6,14 @@ public class PlayerControl : MonoBehaviour
 {
     //private attributes 
 
-    GameObject player; 
-    private Animator _animator;
 
-    private Vector3 _moveDirection = Vector3.zero; 
+    private CharacterController _characterController; 
+    private Animator _animator;
+    private Rigidbody r; 
+   
+    private float Gravity = 20.0f; 
     //public attributes
-    public float Speed = 2.5f;
+    public float Speed = 18f;
 
     public float RotationSpeed = 240.0f;
 
@@ -19,23 +21,22 @@ public class PlayerControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _animator = GetComponent<Animator>(); 
+        r = GetComponent<Rigidbody>(); 
+        _animator = GetComponent<Animator>();
+        _characterController = GetComponent<CharacterController>(); 
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-
-        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-
-        player.transform.position += (move * Speed) * Time.deltaTime; 
-        
-        //get Input for axis (up down left right)
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
-   
-        _animator.SetBool("run", move.magnitude > 0); 
-        
+        Vector3 move = new Vector3(h, 0, v) * Speed * Time.deltaTime;
+
+        r.MovePosition(transform.position + move);
+        _animator.SetBool("run", move.magnitude > 0);
+     
+     
     }
 }
