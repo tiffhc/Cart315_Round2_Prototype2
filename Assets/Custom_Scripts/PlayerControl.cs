@@ -50,6 +50,8 @@ public class PlayerControl : MonoBehaviour
         r.MovePosition(transform.position + move);
         _animator.SetBool("run", move.magnitude > 0);
 
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(move), 0.15f); 
+
         //for jumping 
         Vector3 jump = new Vector3(0, 0, 0);
 
