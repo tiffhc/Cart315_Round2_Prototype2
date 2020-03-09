@@ -124,7 +124,7 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F))
+        //if(Input.GetKeyDown(KeyCode.F))
         {
 
         }
