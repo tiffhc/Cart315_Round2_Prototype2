@@ -55,7 +55,7 @@ public class PlayerControl : MonoBehaviour
         Vector3 move = new Vector3(h, 0, v) * Speed;
 
         r.velocity = move; 
-       // r.velocity = move * Speed; 
+        //r.velocity = move * Speed; 
         //r.MovePosition(transform.position + move);
 
         _animator.SetBool("run", move.magnitude > 0);
