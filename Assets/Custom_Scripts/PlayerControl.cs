@@ -122,12 +122,20 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag.Equals("gear"))
+        {
+            Debug.Log("Gear detected"); 
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                Destroy(collision.gameObject); 
+            }
+        }
+    }
     void Update()
     {
-        //if(Input.GetKeyDown(KeyCode.F))
-        {
-
-        }
+      
     }
 
 }
