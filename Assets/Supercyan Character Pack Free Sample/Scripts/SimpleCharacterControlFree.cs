@@ -125,22 +125,23 @@ public class SimpleCharacterControlFree : MonoBehaviour
                 Destroy(collision.gameObject);
 
                 //code for inventory change
-                gearInventory1.SetActive(true);
 
-                if (f_pressed)
+                if((gearInventory1.activeSelf == false)&& (gearInventory2.activeSelf==false) && (gearInventory3.activeSelf==false))
                 {
-                    Destroy(collision.gameObject);
-
-                    //code for inventory change
                     gearInventory1.SetActive(true);
+                }
+                else if((gearInventory1.activeSelf == true) && (gearInventory2.activeSelf == false) && (gearInventory3.activeSelf == false))
+                {
+                    gearInventory2.SetActive(true);
+                }
+                else if ((gearInventory1.activeSelf == true) && (gearInventory2.activeSelf == true) && (gearInventory3.activeSelf == false))
+                {
+                    gearInventory3.SetActive(true);
 
-                    if (f_pressed)
-                    {
-                        Destroy(collision.gameObject);
-
-                        //code for inventory change
-                        gearInventory1.SetActive(true);
-                    }
+                }
+                else
+                {
+                    Debug.Log("All gears collected"); 
                 }
             }
             else
