@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 public class SimpleCharacterControlFree : MonoBehaviour
 {
+    public GameObject gearInventory1;
+    public GameObject gearInventory2;
+    public GameObject gearInventory3;
+
     public void Initialize(GameObject character)
     {
         m_animator = character.GetComponent<Animator>();
@@ -119,6 +123,25 @@ public class SimpleCharacterControlFree : MonoBehaviour
             if (f_pressed)
             {
                 Destroy(collision.gameObject);
+
+                //code for inventory change
+                gearInventory1.SetActive(true);
+
+                if (f_pressed)
+                {
+                    Destroy(collision.gameObject);
+
+                    //code for inventory change
+                    gearInventory1.SetActive(true);
+
+                    if (f_pressed)
+                    {
+                        Destroy(collision.gameObject);
+
+                        //code for inventory change
+                        gearInventory1.SetActive(true);
+                    }
+                }
             }
             else
             {
