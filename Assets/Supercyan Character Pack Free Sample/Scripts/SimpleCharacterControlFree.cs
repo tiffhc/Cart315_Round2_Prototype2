@@ -9,7 +9,7 @@ public class SimpleCharacterControlFree : MonoBehaviour
 
     public GameObject message;
 
-    //public static numOfGearCollected = 0
+    public static numOfGearCollected = 0;
 
     public void Initialize(GameObject character)
     {
