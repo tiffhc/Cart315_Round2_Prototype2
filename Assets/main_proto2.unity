@@ -225,7 +225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &26173296
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6629,6 +6629,11 @@ PrefabInstance:
       propertyPath: gearInventory3
       value: 
       objectReference: {fileID: 1636372330}
+    - target: {fileID: 1484880713374554797, guid: 2ae6359b3ba9ecb4bb13c7046d679e55,
+        type: 3}
+      propertyPath: message
+      value: 
+      objectReference: {fileID: 26173295}
     - target: {fileID: 6526980774645532587, guid: 2ae6359b3ba9ecb4bb13c7046d679e55,
         type: 3}
       propertyPath: m_Name

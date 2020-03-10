@@ -7,6 +7,10 @@ public class SimpleCharacterControlFree : MonoBehaviour
     public GameObject gearInventory2;
     public GameObject gearInventory3;
 
+    public GameObject message;
+
+    //public static numOfGearCollected = 0
+
     public void Initialize(GameObject character)
     {
         m_animator = character.GetComponent<Animator>();
@@ -137,11 +141,12 @@ public class SimpleCharacterControlFree : MonoBehaviour
                 else if ((gearInventory1.activeSelf == true) && (gearInventory2.activeSelf == true) && (gearInventory3.activeSelf == false))
                 {
                     gearInventory3.SetActive(true);
-
+                    message.SetActive(true);
                 }
                 else
                 {
-                    Debug.Log("All gears collected"); 
+                    Debug.Log("All gears collected");
+                    
                 }
             }
             else
