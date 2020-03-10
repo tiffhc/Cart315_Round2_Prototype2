@@ -45,6 +45,8 @@ public class SimpleCharacterControlFree : MonoBehaviour
     private float m_minJumpInterval = 0.25f;
 
     private bool m_isGrounded;
+
+    private bool f_pressed; 
     
     private List<Collider> m_collisions = new List<Collider>();
 
@@ -67,7 +69,19 @@ public class SimpleCharacterControlFree : MonoBehaviour
                 m_isGrounded = true;
             }
         }
+
     }
+
+    /*
+    private void Pickup(GameObject gear)
+    {
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            Debug.Log("f is pressed");
+            Destroy(gear); 
+        }
+    }
+    */ 
 
     private void OnCollisionStay(Collision collision)
     {
@@ -96,6 +110,22 @@ public class SimpleCharacterControlFree : MonoBehaviour
             }
             if (m_collisions.Count == 0) { m_isGrounded = false; }
         }
+
+        //tank update?
+        if (collision.gameObject.CompareTag("gear"))
+        {
+            Debug.Log("Found gear");
+
+            if (f_pressed)
+            {
+                Destroy(collision.gameObject);
+            }
+            else
+            {
+                Debug.Log("press F please to collect gear");
+            }
+        }
+
     }
 
     private void OnCollisionExit(Collision collision)
@@ -153,6 +183,8 @@ public class SimpleCharacterControlFree : MonoBehaviour
         m_animator.SetFloat("MoveSpeed", m_currentV);
 
         JumpingAndLanding();
+
+
     }
 
     private void DirectUpdate()
@@ -209,5 +241,10 @@ public class SimpleCharacterControlFree : MonoBehaviour
         {
             m_animator.SetTrigger("Jump");
         }
+    }
+
+    void Update()
+    {
+        f_pressed = Input.GetKeyDown("f"); 
     }
 }
