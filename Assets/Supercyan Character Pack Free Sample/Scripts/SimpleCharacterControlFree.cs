@@ -9,7 +9,7 @@ public class SimpleCharacterControlFree : MonoBehaviour
 
     public GameObject message;
 
-    public static numOfGearCollected = 0;
+    public static int numOfGearCollected = 0;
 
     public void Initialize(GameObject character)
     {
@@ -133,14 +133,17 @@ public class SimpleCharacterControlFree : MonoBehaviour
                 if((gearInventory1.activeSelf == false)&& (gearInventory2.activeSelf==false) && (gearInventory3.activeSelf==false))
                 {
                     gearInventory1.SetActive(true);
+                    numOfGearCollected++;
                 }
                 else if((gearInventory1.activeSelf == true) && (gearInventory2.activeSelf == false) && (gearInventory3.activeSelf == false))
                 {
                     gearInventory2.SetActive(true);
+                    numOfGearCollected++;
                 }
                 else if ((gearInventory1.activeSelf == true) && (gearInventory2.activeSelf == true) && (gearInventory3.activeSelf == false))
                 {
                     gearInventory3.SetActive(true);
+                    numOfGearCollected++;
                     message.SetActive(true);
                 }
                 else
