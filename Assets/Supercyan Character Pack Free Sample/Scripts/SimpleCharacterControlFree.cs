@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+
 public class SimpleCharacterControlFree : MonoBehaviour
 {
     public GameObject gearInventory1;
     public GameObject gearInventory2;
     public GameObject gearInventory3;
+    public GameObject key;
+
 
     public GameObject message;
 
-    public static int numOfGearCollected = 0;
+    public int numOfGearCollected = 0;
 
     public void Initialize(GameObject character)
     {
@@ -134,17 +137,22 @@ public class SimpleCharacterControlFree : MonoBehaviour
                 {
                     gearInventory1.SetActive(true);
                     numOfGearCollected++;
+                    //Debug.Log(numOfGearCollected);
+
                 }
                 else if((gearInventory1.activeSelf == true) && (gearInventory2.activeSelf == false) && (gearInventory3.activeSelf == false))
                 {
                     gearInventory2.SetActive(true);
                     numOfGearCollected++;
+                    //Debug.Log(numOfGearCollected);
+
                 }
                 else if ((gearInventory1.activeSelf == true) && (gearInventory2.activeSelf == true) && (gearInventory3.activeSelf == false))
                 {
                     gearInventory3.SetActive(true);
                     numOfGearCollected++;
                     message.SetActive(true);
+                    //Debug.Log(numOfGearCollected); 
                 }
                 else
                 {
@@ -157,6 +165,24 @@ public class SimpleCharacterControlFree : MonoBehaviour
                 Debug.Log("press F please to collect gear");
             }
         }
+
+        if (collision.gameObject.CompareTag("chimney"))
+        {
+            Debug.Log("Entering fire");
+
+            if (numOfGearCollected == 3)
+            {
+                if (f_pressed)
+                {
+                    gearInventory1.SetActive(false);
+                    gearInventory2.SetActive(false);
+                    gearInventory3.SetActive(false);
+
+                    key.SetActive(true);
+                }
+            }
+        }
+
 
     }
 

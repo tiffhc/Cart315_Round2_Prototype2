@@ -6,12 +6,16 @@ public class GenerateKey : MonoBehaviour
 {
     public SimpleCharacterControlFree SC;
 
+    public GameObject key; 
+
+    private int num; 
+
     // Update is called once per frame
     void Update()
     {
-        if (SC.numOfGearCollected == 3)
-        {
-
-        }
+        num = SC.numOfGearCollected;
+        Debug.Log("num inside GenerateKey" + num); 
     }
+
+
 }
